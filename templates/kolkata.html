@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>House Price Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">House Price Prediction</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chennai">Chennai</a></li>
+        <li><a href="/delhi">Delhi</a></li>
+        <li><a href="/hyderabad">Hyderabad</a></li>
+        <li class="active"><a href="/kolkata">Kolkata</a></li>
+        <li><a href="/mumbai">Mumbai</a></li>
+        <li><a href="/anantapur">Anantapur</a></li>
+        <li><a href="/chittoor">Chittoor</a></li>
+        <li><a href="/kurnool">Kurnool</a></li>
+        <li><a href="/nandyal">Nandyal</a></li>
+      </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Predict House in Kolkata</h2>
+    <form action="/predictkolkata" method="post">
+    
+    <div class="form-group">
+        <label for="area">Area (Sq.FT):</label>
+        <input type="number" class="form-control" id="area" placeholder="Enter area" name="area">
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <select class="form-control" name="location">
+        {%for i in range(0, len1)%}
+        <option>{{dashboard_data1[i]}}</option>
+        {%endfor%}
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="BedRooms">Number of Bed Rooms:</label>
+      <input type="number" class="form-control" id="BedRooms" placeholder="Enter number of Bed Rooms" name="noofbedrooms">
+    </div>
+
+    <div class="form-group">
+      <label for="resale">Resale:</label>
+      <select class="form-control" name="resale">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ms">Number of Maintenance Staff:</label>
+        <select class="form-control" name="maintenancestaff">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="gym">Gym:</label>
+        <select class="form-control" name="gym">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="sp">Swimming Pool:</label>
+        <select class="form-control" name="sp">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="lsg">Land Scaped Gardens:</label>
+        <select class="form-control" name="gardens">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="jt">Jogging Track:</label>
+        <select class="form-control" name="jog">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="rwh">Rain Water Harvesting:</label>
+        <select class="form-control" name="rainwater">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ig">Indoor Games</label>
+        <select class="form-control" name="indoorgames">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="sm">Shopping Mall</label>
+        <select class="form-control" name="mall">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ic">Intercom</label>
+        <select class="form-control" name="intercom">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="sf">Sports Facility</label>
+        <select class="form-control" name="sports">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="atm">ATM</label>
+        <select class="form-control" name="atm">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="club">Club House Facility</label>
+        <select class="form-control" name="club">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="school">School</label>
+        <select class="form-control" name="school">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="security">24X7 Security</label>
+        <select class="form-control" name="security">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="backup">Power Backup</label>
+        <select class="form-control" name="power">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="parking">Car Parking</label>
+        <select class="form-control" name="car">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="staff">Staff Quarter</label>
+        <select class="form-control" name="StaffQuarter">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="cafe">Cafeteria</label>
+        <select class="form-control" name="cafe">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="mpr">Multi Purpose Room</label>
+        <select class="form-control" name="mproom">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="hospital">Hospital</label>
+        <select class="form-control" name="hospital">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Washing Machine">Washing Machine</label>
+        <select class="form-control" name="washingmachine">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="gas">Gas Connection</label>
+        <select class="form-control" name="gas">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ac">AC</label>
+        <select class="form-control" name="ac">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="cpa">Children's Play Area</label>
+        <select class="form-control" name="childrenplayarea">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="lift">Lift</label>
+        <select class="form-control" name="lift">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="beds">Bed</label>
+        <select class="form-control" name="bed">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="vastu">Vastu Complaints</label>
+        <select class="form-control" name="vaastu">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="mw">Microwave</label>
+        <select class="form-control" name="microwave">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="gc">Golf Course</label>
+        <select class="form-control" name="golf">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="tv">TV</label>
+        <select class="form-control" name="tv">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="dt">Dining Table</label>
+        <select class="form-control" name="diningtable">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="sofa">Sofa</label>
+        <select class="form-control" name="sofa">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="fridge">Refrigerator</label>
+        <select class="form-control" name="fridge">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+    </div>
+    
+    <input type="submit" class="btn-primary" value="PREDICT" />
+</form>
+{%if result is defined%}
+<span style="color:red;"><h1>The House Price is Rs. {{result}}/-</h1></span>
+{%endif%}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>
